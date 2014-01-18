@@ -8,6 +8,11 @@
   <i>Established at <%= @brewery.year %></i>
 </p>
 
+<% if !@brewery.ratings.empty? %>
+    <%= "Has #{pluralize(@brewery.ratings.count, "rating")}, average #{@brewery.average_rating}" %>
+<% end %>
+
+
 <p>
 	<strong>Beers:</strong>
 	<%= @brewery.beers.count %>
@@ -19,5 +24,4 @@
  <% end %>
 </p>
 
-<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
-<%= link_to 'Back', breweries_path %>
+<%= link_to 'Edit', edit_brewery_path(@brewery) %> 
