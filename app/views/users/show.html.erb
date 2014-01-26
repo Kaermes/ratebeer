@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= @user.username %></strong>
+</p>
+<p>
+  <% unless @user.beer_clubs.empty? %>
+    <%= "is member in #{pluralize(@user.beer_clubs.count, "beer club")} " %>
+    <% @user.beer_clubs.each do |club| %>
+      <br>
+      <%= link_to club.name, club %>
+    <% end %>
+  <% else %>
+    is not a member of any beer clubs
+  <% end %>
+</p>
+<p>
+  <% unless @user.ratings.empty? %>
+    <%= "has given #{@user.ratings.count} ratings" %>
+    <%= "with average score of #{@user.average_rating}" %>
+    <% @user.ratings.each do |rating| %>
+      <br>
+      <%= "#{rating.beer} #{rating.score}" %>
+      <% if @user == current_user %>
+        <%= link_to 'destroy', rating, method: :delete%>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= "you have not given any ratings yet" %>
+  <% end %>
+</p>
+  <% if @user == current_user %>
+    <%= link_to 'Edit', edit_user_path(@user) %> <br>
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>

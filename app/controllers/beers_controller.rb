@@ -16,7 +16,7 @@ class BeersController < ApplicationController
   def new
 		@breweries = Brewery.all
     @beer = Beer.new
-		@styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
+		@styles = available_styles
   end
 
   # GET /beers/1/edit
@@ -33,6 +33,8 @@ class BeersController < ApplicationController
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer }
       else
+        @styles = available_styles
+        @breweries = Brewery.all
         format.html { render action: 'new' }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
@@ -72,5 +74,9 @@ class BeersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
       params.require(:beer).permit(:name, :style, :brewery_id)
+    end
+
+    def available_styles
+      ["Weizen", "Lager", "Pale ale", "IPA", "Porter"]
     end
 end
