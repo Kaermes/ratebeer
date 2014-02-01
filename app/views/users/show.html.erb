@@ -3,6 +3,19 @@
 <p>
   <strong><%= @user.username %></strong>
 </p>
+
+  <% fav_beer = @user.favorite_beer %>
+  <% fav_style = @user.favorite_style %>
+  <% fav_brewery = @user.favorite_brewery %>
+  <% if fav_beer %>
+    <p> <%= "Favorite beer: #{fav_beer}" %> <p>
+  <% end %>
+  <% if fav_style %>
+    <p> <%= "Favorite beer style: #{fav_style}" %> <p>
+  <% end %>
+  <% if fav_brewery %>
+    <p> <%= "Favorite brewery: #{fav_brewery}" %> <p>
+  <% end %>
 <p>
   <% unless @user.beer_clubs.empty? %>
     <%= "is member in #{pluralize(@user.beer_clubs.count, "beer club")} " %>
@@ -26,7 +39,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <%= "you have not given any ratings yet" %>
+    <%= "has not given any ratings yet" %>
   <% end %>
 </p>
   <% if @user == current_user %>

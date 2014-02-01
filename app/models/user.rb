@@ -27,4 +27,33 @@ class User < ActiveRecord::Base
     errors.add(:password, "has to contain at least one number") unless password.match(/\p{Number}/)
     end
   end
+  
+  def favorite_beer
+    favorite_x(:beer)
+  end
+
+  def favorite_style
+    favorite_x(:style)
+  end
+  
+  def favorite_brewery
+    favorite_x(:brewery)
+  end 
+
+
+
+
+  private
+
+  def favorite_x(x) #for beer/style/brewery
+    return nil if ratings.empty?
+    if x == :beer
+      ratings.order(score: :desc).limit(1).first.beer
+    else
+      grouped = ratings.group_by {|r| r.beer.send(x)}
+      grouped.keys.each {|key| grouped[key] = average_rating(grouped[key])}
+      grouped.sort_by {|k, v| v}.last[0]
+    end 
+  end
+
 end

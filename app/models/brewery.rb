@@ -11,9 +11,9 @@ class Brewery < ActiveRecord::Base
 
   def print_report
     puts name
-    puts "established at year #{year}"
-    puts "number of beers #{beers.count}"
-    puts "number of ratings #{ratings.count}"
+    puts "Established year: #{year}"
+    puts "Number of beers #{beers.count}"
+    puts "Number of ratings #{ratings.count}"
   end
 
 
@@ -25,6 +25,10 @@ class Brewery < ActiveRecord::Base
 
   def year_cannot_be_in_the_future
     errors.add(:year, 'cannot be in the future') unless year <= Time.now.year
+  end
+
+  def to_s
+    "#{name} #{year}"
   end
 
 end
