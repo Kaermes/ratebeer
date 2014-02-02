@@ -88,11 +88,12 @@ describe User do
     end
 
     it "is the one with highest average rating if several rated" do
-      create_beers_with_ratings_and_style(10, 20, 30, 40, 49, user, "Lager")
-      create_beers_with_ratings_and_style(10, 20, 30, 40, 50, user, "Stout")
-      create_beers_with_ratings_and_style(9, 19, 30, 40, 50, user, "Pils")
+      create_beers_with_ratings_and_style(10, 20, 30, 39, 50, user, "Lager")
+      create_beers_with_ratings_and_style(10, 20, 30, 41, 49, user, "Stout")
+      create_beers_with_ratings_and_style(10, 20, 30, 40, 49, user, "Pils")
 
-      expect(user.favorite_style).to eq("Stout")
+
+      expect(user.favorite_style.name).to eq("Stout")
     end
 
   end
@@ -156,8 +157,9 @@ describe User do
   end
 
   def create_beers_with_ratings_and_style(*scores, user, style)
+    style_model = FactoryGirl.create(:style, :name => style)
     scores.each do |score|
-      create_beer_with_rating_and_style(score, user, style)
+      create_beer_with_rating_and_style(score, user, style_model)
     end
   end
 end

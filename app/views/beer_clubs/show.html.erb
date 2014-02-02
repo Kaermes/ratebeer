@@ -27,3 +27,9 @@
   club doesn't have any members yet
 <% end %>
 
+<% if @membership %>
+  <%= form_for(@membership) do |f| %>
+    <%= f.hidden_field :beer_club_id %>
+    <%= f.submit "Join club"%>
+  <%end%>
+<% end %>

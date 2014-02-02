@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "Beer" do
 
   let!(:brewery) {FactoryGirl.create :brewery, name:"Koff"}
+  let!(:style) {FactoryGirl.create :style, name:"Weizen"}
   
   describe "when signed in" do
     before :each do
@@ -38,7 +39,7 @@ describe "Beer" do
   def create_beer(name)
     visit new_beer_path
     fill_in('beer_name', with: name)
-    select('Weizen', from:'beer[style]')
+    select('Weizen', from:'beer[style_id]')
     select('Koff', from:'beer[brewery_id]')
   end
 end

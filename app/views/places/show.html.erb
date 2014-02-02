@@ -1,0 +1,30 @@
+<h1> <%= @place.name %></h1>
+<iframe src=<%= @place.blogmap %> style="width:500px; height:500px;"></iframe>
+
+<br>
+<table>
+  <thead>
+    <% Place.fields_besides_name.each do |f| %>
+      <td><%=f %></td>
+    <% end %>
+  </thead>
+  <tr>
+    <% Place.fields_besides_name.each do |f| %>
+      <td><%= @place.send(f) %></td>
+    <% end %>
+  </tr>
+</table>
+<table>
+  <thead>
+    <% Place.score_fields.each do |f| %>
+      <td><%=f %></td>
+    <% end %>
+  </thead>
+
+  <tr>
+    <% Place.score_fields.each do |f| %>
+      <td><%= @place.send(f) %></td>
+    <% end %>
+  </tr>
+</table>
+
