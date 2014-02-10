@@ -11,6 +11,6 @@ deploy:
   api_key:
     secure: lLGHftzP5wPgcOFA9YPyrMF6Rgk3Xs1UEk8r9OyfXe2DGeJw9aBW4grL9bHPt3eGpsshacwHXkbr7QgdmsjY02MLYzsmcvRRC1NWIJTujSeXhnAT7zSmTJ8XR63lWhzdpE/ak/+GIj1pHYYFzowVrNGbKsQTUYJjP68yLNkldLM=
   app: still-brushlands-2241
-  run: rake db:migrate
+  run: "rake db:migrate"
   on:
     repo: Kaermes/ratebeer
