@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 
+gem 'jquery-turbolinks'
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
 end
@@ -12,6 +14,11 @@ group :test do
   gem 'launchy'
   gem 'simplecov', require: false
   gem 'webmock'
+end
+
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
 end
 
 gem "rails-settings-cached", "0.3.1"

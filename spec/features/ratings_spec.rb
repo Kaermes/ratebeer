@@ -34,9 +34,10 @@ describe "Rating" do
       visit ratings_path
 
       expect(page).to have_content("Number of ratings 3")
-      expect(page).to have_content("iso 3 10")
-      expect(page).to have_content("Karhu 10")
-      expect(page).to have_content("iso 3 20")
+      expect(page).to have_content("iso 3")
+      expect(page).to have_content("10")
+      expect(page).to have_content("20")
+      expect(page).to have_content("Karhu")
     end
   end  
 

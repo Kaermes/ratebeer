@@ -1,11 +1,19 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list, :nglist]
 
   # GET /beers
   # GET /beers.json
   def index
     @beers = Beer.all
+
+    order = params[:order] || 'name'
+
+    case order
+      when 'name' then @beers.sort_by!{ |b| b.name }
+      when 'brewery' then @beers.sort_by!{ |b| b.brewery.name }
+      when 'style' then @beers.sort_by!{ |b| b.style.name }
+    end
   end
 
   # GET /beers/1
@@ -19,6 +27,12 @@ class BeersController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @beer }
     end
+  end
+
+  def list
+  end
+
+  def nglist
   end
 
   # GET /beers/new
